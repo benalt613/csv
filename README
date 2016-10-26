@@ -2,7 +2,7 @@ SCRIPTS:
 csv.awk, csv.ksh, csv.bash
 
 AUTHOR:
-Ben Altman (csv.feedback.benalt@xoxy.net)
+Ben Altman (csv.feedback.benalt at xoxy.net)
 
 DESCRIPTION:
 csv.awk, csv.bash and csv.ksh are awk, bash and ksh scripts 

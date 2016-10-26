@@ -1,7 +1,7 @@
 #! /usr/bin/awk -f
 
 # Script: csv.awk
-# Author: Ben Altman (csv.feedback.benalt@xoxy.net)
+# Author: Ben Altman (csv.feedback.benalt at xoxy.net)
 # Description: Convert csv files from Excel in to a format using a different separators.
 
 # Usage: csv.awk [options] csv_file 

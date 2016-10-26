@@ -1,7 +1,7 @@
 #! /usr/bin/ksh
 
 # Script: csv.ksh
-# Author: Ben Altman (csv.feedback.benalt@xoxy.net)
+# Author: Ben Altman (csv.feedback.benalt at xoxy.net)
 # Description: Convert csv files from Excel in to a format using a different separators.
 #
 # Usage: csv.bash [options] csv_file
