@@ -1,0 +1,54 @@
+SCRIPTS:
+csv.awk, csv.ksh, csv.bash
+
+AUTHOR:
+Ben Altman (csv.feedback.benalt@xoxy.net)
+
+DESCRIPTION:
+csv.awk, csv.bash and csv.ksh are awk, bash and ksh scripts 
+to export MS Excel style csv files into files with other
+delimiters. They handle quoted and unquoted fields as well
+as multi-line fields. The csv delimiter is a comma by
+default but can be specified to be a regular expression.
+Though if a pipe is specified for a csv input file field
+separator, I escape it to "[|]" assuming a literal pipe is
+intended rather than the regex meaning "or".  The output
+delimiter can be specified to be any string (pipe by
+default) as can be the new-line for multi-line fields ("\n"
+characters by default). The output can be in a format that
+can be easily be used as input to shell scripts using the
+read command.
+
+USAGE:
+csv.awk [options] [csv_file(s)]
+
+        Options:
+        FS=csv_file_field_separator (default is comma)
+		OFS=output_field_separator (default is pipe)
+		nl=multi-line_field_separator (default is "\n")
+
+csv.ksh [options] [csv_file(s)]
+csv.bash [options] [csv_file(s)]
+
+        Options:
+        -i csv_file_field_separator (default is comma)
+		-o output_field_separator (default is pipe)
+		-n multiline_field_separator (default is "\n")
+		-l or -m can be used in place of -n
+
+CSV files can be mentioned explicitely or scripts can have
+data redirected to them via pipe or stdin.
+
+EXAMPLES:
+To convert a csv file to "@" delimitted format with
+multi-line fields merged using the space char to be read in
+via a while loop in bash:
+  csv.awk OFS=@ nl=" " testfile.csv | 
+          while IFS=@ read -a field; do
+
+Convert a csv file to a pipe delimitted file:
+  csv.bash < testfile.csv > testfile.txt
+or
+  csv.ksh testfile.csv > testfile.txt
+or explicitly, joining multi-line fields with a space:
+  csv.bash -o\| -n" " testfile.txt
