@@ -24,17 +24,17 @@ csv.awk [options] [csv_file(s)]
 
         Options:
         FS=csv_file_field_separator (default is comma)
-		OFS=output_field_separator (default is pipe)
-		nl=multi-line_field_separator (default is "\n")
+        OFS=output_field_separator (default is pipe)
+        nl=multi-line_field_separator (default is "\n")
 
 csv.ksh [options] [csv_file(s)]
 csv.bash [options] [csv_file(s)]
 
         Options:
         -i csv_file_field_separator (default is comma)
-		-o output_field_separator (default is pipe)
-		-n multiline_field_separator (default is "\n")
-		-l or -m can be used in place of -n
+        -o output_field_separator (default is pipe)
+        -n multiline_field_separator (default is "\n")
+        -l or -m can be used in place of -n
 
 CSV files can be mentioned explicitely or scripts can have
 data redirected to them via pipe or stdin.
