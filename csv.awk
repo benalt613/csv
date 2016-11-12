@@ -9,7 +9,7 @@
 # ofs=output_field_separator (default is pipe)
 # nl=newline_separator for multi-line fields (default is \\n)
 #
-# Example: csv.awk OFS=! nl=\; file.csv
+# Example: csv.awk ofs=! nl=\; file.csv
 #          Convert file.csv to "!" delimited file with multi-line fields put on single line separated by ";"
 #
 
@@ -24,7 +24,7 @@ BEGIN {
 	if (! nl) nl = "\\n"
 	if (! fs) FS = ","; else FS = fs
 	if (! ofs) OFS = "|"; else OFS=ofs
-	# fs = FS # for rejoining fields containing FS for case when it`s a pipe, don`t join with [|]
+	# above line backs up FS for when rejoining fields containing FS in the case when it`s a pipe. Don`t join with [|] per the below
 	gsub("[|]","[|]",FS)  # Input separator containing a pipe replace "|" with "[|]"
 }
 
@@ -42,7 +42,7 @@ BEGIN {
 
 		# If the field is not a simple field with no DQs at all
 		if (substr($i,1,1) == "\"") {
-			# while the field ENDS in even or no dqs it is joined to the next field, until odd quotes are joined ending the field...
+			# while the field ENDS in even or no DQs it is joined to the next field, until odd quotes are joined ending the field...
 			while (evenqq($i)) 
 			{
 				if (j <= n) { 			# join with this line (fs)

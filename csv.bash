@@ -32,7 +32,7 @@ while getopts :i:o:m:n:l: opt; do
 done
 shift $((OPTIND-1))
 
-awk -F"$ifs" -vOFS="$ofs" -vnl="$nl" '
+awk -vfs="$ifs" -vofs="$ofs" -vnl="$nl" '
 # does the field end in an even number of double quotes?
 function evenqq(field) {
 	# return ! ((length(field) - length(gensub("\"*$","",1,field))) % 2)  # gawk only
@@ -41,7 +41,10 @@ function evenqq(field) {
 }
 
 BEGIN {
-	fs = FS # for rejoining fields containing FS for case when it`s a pipe, don`t join with [|]
+	if (! nl) nl = "\\n"
+	if (! fs) FS = ","; else FS = fs
+	if (! ofs) OFS = "|"; else OFS=ofs
+	# above line backs up FS for when rejoining fields containing FS in the case when it`s a pipe. Don`t join with [|] per the below
 	gsub("[|]","[|]",FS)  # Input separator containing a pipe replace "|" with "[|]"
 }
 
