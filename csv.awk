@@ -1,12 +1,12 @@
 #! /usr/bin/awk -f
 
 # Script: csv.awk
-# Author: Ben Altman (csv.feedback.benalt at xoxy.net)
+# Author: Ben Altman (csv.feedback.benalt@xoxy.net)
 # Description: Convert csv files from Excel in to a format using a different separators.
 
 # Usage: csv.awk [options] csv_file 
-# FS=csv_file_field_separator (default is comma)
-# OFS=output_field_separator (default is pipe)
+# fs=csv_file_field_separator (default is comma)
+# ofs=output_field_separator (default is pipe)
 # nl=newline_separator for multi-line fields (default is \\n)
 #
 # Example: csv.awk OFS=! nl=\; file.csv
@@ -21,10 +21,10 @@ function evenqq(field) {
 }
 
 BEGIN {
-	nl = "\\n"
-	FS = ","
-	OFS = "|"
-	fs = FS # for rejoining fields containing FS for case when it`s a pipe, don`t join with [|]
+	if (! nl) nl = "\\n"
+	if (! fs) FS = ","; else FS = fs
+	if (! ofs) OFS = "|"; else OFS=ofs
+	# fs = FS # for rejoining fields containing FS for case when it`s a pipe, don`t join with [|]
 	gsub("[|]","[|]",FS)  # Input separator containing a pipe replace "|" with "[|]"
 }
 
