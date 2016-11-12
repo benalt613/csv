@@ -23,8 +23,8 @@ USAGE:
 csv.awk [options] [csv_file(s)]
 
         Options:
-        FS=csv_file_field_separator (default is comma)
-        OFS=output_field_separator (default is pipe)
+        fs=csv_file_field_separator (default is comma)
+        ofs=output_field_separator (default is pipe)
         nl=multi-line_field_separator (default is "\n")
 
 csv.ksh [options] [csv_file(s)]
