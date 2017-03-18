@@ -2,7 +2,7 @@
 
 # Script: csv.awk
 # Author: Ben Altman (csv.feedback.benalt@xoxy.net)
-# Description: Convert csv files from Excel in to a format using a different separators.
+# Description: Convert csv files from Excel in to a format using a different separator.
 
 # Usage: csv.awk [options] csv_file 
 # fs=csv_file_field_separator (default is comma)
@@ -39,6 +39,9 @@ BEGIN {
 	while (j <= n+1) {
 		# 1. A field with no DQs is a simple field and we can move straight to the next field.
 		# 2. A field starting with a DQ can contain DQs, FS or multiple lines which we need to join.
+
+        # Exceptional even double quoted field where then entire field is "" is equal to blank without the double quotes
+		if ($i == "\"\"") $i=""
 
 		# If the field is not a simple field with no DQs at all
 		if (substr($i,1,1) == "\"") {

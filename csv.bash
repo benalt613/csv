@@ -2,7 +2,7 @@
 
 # Script: csv.bash
 # Author: Ben Altman (csv.feedback.benalt at xoxy.net)
-# Description: Convert csv files from Excel in to a format using a different separators.
+# Description: Convert csv files from Excel in to a format using a different separator.
 #
 # Usage: csv.bash [options] csv_file
 #        -i csv_file_field_separator (default is comma)
@@ -55,6 +55,9 @@ BEGIN {
 	#     more fields on those lines to complete the record.
 	i=1; j=2
 	n = nf = split($0, field)
+
+    # Exceptional even double quoted field where then entire field is "" is equal to blank without the double quotes
+	if ($i == "\"\"") $i=""
 
 	while (j <= n+1) {
 		# 1. A field with no DQs is a simple field and we can move straight to the next field.
